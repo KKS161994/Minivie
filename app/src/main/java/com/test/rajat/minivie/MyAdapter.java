@@ -26,7 +26,7 @@ public class MyAdapter extends ArrayAdapter<HashMap<String,String>> {
     private Typeface roboto_thin,roboto_reg;
 
 
-    public MyAdapter(Context context, int resource,ArrayList<HashMap<String,String>> movies_list) {
+    public MyAdapter(Context context,int resource,ArrayList<HashMap<String,String>> movies_list) {
         super(context, resource,movies_list);
         this.context=context;
         this.movies_list=movies_list;
@@ -41,8 +41,6 @@ public class MyAdapter extends ArrayAdapter<HashMap<String,String>> {
         ImageView iv_poster;
         TextView tv_title;
         TextView tv_releaseYear;
-
-
     }
 
     @Override
@@ -55,7 +53,6 @@ public class MyAdapter extends ArrayAdapter<HashMap<String,String>> {
             LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v=inflater.inflate(R.layout.row,null);
             holder=new ViewHolder();
-
             holder.iv_poster=(ImageView) v.findViewById(R.id.iv_poster);
             holder.tv_title=(TextView) v.findViewById(R.id.tv_title);
             holder.tv_releaseYear=(TextView) v.findViewById(R.id.tv_releaseYear);

@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +29,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private ListView list_movies;
     private MyAdapter adapter;
     private SearchView searchView;
+    private DetailsActivity details;
     TextView tv_title,tv_releaseYear;
     Typeface face;
     JSONParser parser;
@@ -39,20 +39,18 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        face= Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
-        list_movies=(ListView) findViewById(R.id.list_movies);
-        tv_title=(TextView) findViewById(R.id.tv_title);
-        tv_releaseYear=(TextView) findViewById(R.id.tv_releaseYear);
+        face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        list_movies = (ListView) findViewById(R.id.list_movies);
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_releaseYear = (TextView) findViewById(R.id.tv_releaseYear);
         list_movies.setOnItemClickListener(this);
         handleIntent(getIntent());
-        parser=new JSONParser();
-
+        parser = new JSONParser();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -78,16 +76,13 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 return true;
             }
         };
-
         searchView.setOnQueryTextListener(queryTextListener);
-
         return true;
     }
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
         }
     }
     @Override
@@ -100,17 +95,13 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify a parent activity in AndroidManifest.xml
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         switch(id)
         {
             case R.id.action_settings:
                 return true;
             case R.id.action_search:
-
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -118,14 +109,18 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this,"Item Clicked",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this,DetailsActivity.class));
+        details=new DetailsActivity();
+
+        HashMap<String,String> movie_details=movies_list.get(position);
+        Intent i=new Intent(this,DetailsActivity.class);
+        i.putExtra("movie_details", movie_details);
+        startActivity(i);
+
 
     }
 
     class RetrieveJSON extends AsyncTask<String,String,String>
     {
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -149,14 +144,17 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                     String overview=tmp.getString("overview");
                     String rating=tmp.getString("vote_average");
                     String poster_path=tmp.getString("poster_path");
+                    String backdrop_path=tmp.getString("backdrop_path");
+                    String vote_average=tmp.getString("vote_average");
                     HashMap<String,String> movie=new HashMap<>();
                     movie.put("title",title);
                     movie.put("release_date",release_date);
                     movie.put("overview",overview);
                     movie.put("rating",rating);
                     movie.put("poster_path",poster_path);
+                    movie.put("backdrop_path",backdrop_path);
+                    movie.put("vote_average",vote_average);
                     movies_list.add(movie);
-
                 }
 
             }
@@ -170,13 +168,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
         @Override
         protected void onPostExecute(String result) {
-
             super.onPostExecute(result);
             adapter=new MyAdapter(MainActivity.this,R.layout.row,movies_list);
             list_movies.setAdapter(adapter);
-
-
         }
     }
-
 }

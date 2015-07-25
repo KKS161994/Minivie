@@ -5,18 +5,24 @@
     android:background="?android:attr/windowBackground"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="loren_ipsum"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+    <ImageView
+        android:id="@+id/iv_poster_b"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_title_b"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:text="loren_ipsum"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/golden_star"
         android:textAppearance="@android:style/TextAppearance.Medium" />
 
 </LinearLayout>
