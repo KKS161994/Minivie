@@ -29,7 +29,7 @@ public class DetailsActivity extends ActionBarActivity {
         tv_title_b=(TextView) findViewById(R.id.tvTitle);
         tvReleaseDate=(TextView) findViewById(R.id.tvReleaseDate);
         tvSynopsis=(TextView) findViewById(R.id.tvSynopsis);
-        tvVote=(TextView) findViewById(R.id.tvVote);
+        tvVote=(TextView) findViewById(R.id.tvAudienceScore);
         Log.d("TAG","Created");
        // Toast.makeText(DetailsActivity.this, "title", Toast.LENGTH_SHORT).show();
         setDetails();

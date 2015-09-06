@@ -20,7 +20,7 @@
         <activity android:name="com.test.rajat.minivie.DetailsActivity"
             android:label="Movie"></activity>
         <activity android:name="com.test.rajat.minivie.LoginActivity"
-            android:label="Sign In">
+            android:label="OMDB">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

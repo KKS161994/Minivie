@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="O M D B"
+            android:text="Welcome to OMDB"
             android:id="@+id/textView2"
             android:textSize="30dp"
             android:textColor="#ffffffff" />
@@ -43,9 +43,9 @@
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
+                <LinearLayout android:id="@+id/email_signup_form" android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:orientation="vertical">
-                    <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
+                    <AutoCompleteTextView android:id="@+id/signupemail" android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:hint="Email"
                         android:inputType="textEmailAddress" android:maxLines="1"
                         android:singleLine="true"
@@ -53,7 +53,7 @@
                         android:textColorHint="#ffffffff"
                         android:textColor="#ffffffff" />
 
-                    <EditText android:id="@+id/password" android:layout_width="match_parent"
+                    <EditText android:id="@+id/signuppassword" android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:hint="Password"
                         android:imeActionLabel=""
                         android:imeOptions="actionUnspecified" android:inputType="textPassword"
@@ -62,9 +62,18 @@
                         android:textColorHint="#ffffffff"
                         android:textColor="#ffffffff" />
 
-                    <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
+                    <EditText android:id="@+id/cnfpassword" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:hint="Confirm Password"
+                        android:imeActionLabel=""
+                        android:imeOptions="actionUnspecified" android:inputType="textPassword"
+                        android:maxLines="1" android:singleLine="true"
+                        android:layout_marginBottom="10dp"
+                        android:textColorHint="#ffffffff"
+                        android:textColor="#ffffffff" />
+
+                    <Button android:id="@+id/email_sign_up_button" style="?android:textAppearanceSmall"
                         android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp" android:text="Sign in"
+                        android:layout_marginTop="16dp" android:text="Sign Up"
                         android:textStyle="bold"
                         android:textColor="#ffffffff"
                         android:background="#ff7e51c2" />
@@ -72,31 +81,28 @@
 
                 </LinearLayout>
 
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll3"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-       >
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/fb_login_button"/>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll3"-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="Sign Up"
-            android:id="@+id/signUpTextView"
-            android:autoLink="web"
-            android:textColor="#ffffffff" />
-    </LinearLayout>
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center_horizontal|bottom"-->
+        <!-->-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="70dp"-->
+            <!--android:text="Log in"-->
+            <!--android:id="@+id/tv_login"-->
+            <!--android:autoLink="web"-->
+            <!--android:textColor="#ffffffff" />-->
+    <!--</LinearLayout>-->
 </LinearLayout>

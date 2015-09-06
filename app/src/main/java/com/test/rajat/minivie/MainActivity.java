@@ -31,6 +31,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private SearchView searchView;
     private DetailsActivity details;
     TextView tv_title,tv_releaseYear;
+    private final static CharSequence hint="Search OMDB";
     Typeface face;
     JSONParser parser;
     ArrayList<HashMap<String,String>> movies_list;

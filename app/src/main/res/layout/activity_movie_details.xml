@@ -1,137 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="15dp"
     tools:context=".BoxOfficeDetailActivity" >
 
     <!-- @drawable/large_movie_poster sourced from
          http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg -->
-    <ImageView
-        android:id="@+id/ivPosterImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:maxHeight="179dp"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
-         />
-
-    <TextView
-        android:id="@+id/tvCriticsScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvTitle"
-        android:layout_below="@+id/tvTitle"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/ivPosterImage"
-        android:textStyle="bold"
-        android:text="Critics Score: 93%"
-        android:textSize="14sp" />
-    <TextView
-        android:id="@+id/tvReleaseDateBanner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvAudienceScore"
-        android:layout_below="@+id/tvAudienceScore"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/ivPosterImage"
-        android:textStyle="bold"
-        android:text="Release Date:"
-        android:textSize="14sp" />
-    <TextView
-        android:id="@+id/tvReleaseDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvAudienceScore"
-        android:layout_below="@+id/tvAudienceScore"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="95dp"
-        android:textStyle="bold"
-        android:textSize="14sp" />
-
-
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivPosterImage"
-        android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/ivPosterImage"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/tvVote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvTitle"
-        android:layout_below="@+id/tvCriticsScore"
-        android:layout_toRightOf="@+id/tvAudienceScore"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="110dp"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/tvAudienceScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tvCriticsScore"
-        android:layout_below="@id/tvCriticsScore"
-        android:layout_marginTop="5dp"
-        android:text="Audience Score :"
-        android:textStyle="bold"
-        android:textSize="14sp" />
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ivPosterImage"
         android:layout_marginTop="10dp" >
 
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:id="@+id/ivPosterImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                />
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/ivPosterImage"
+                android:background="#0288D1"
+                android:textStyle="bold"
+                android:layout_below="@+id/ivPosterImage"
+
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"
+                android:padding="7dp"/>
+
+            <TextView
+                android:id="@+id/tvCriticsScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvTitle"
+                android:layout_below="@+id/tvTitle"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="Critics Score: 93%"
+                android:textSize="17sp" />
+            <TextView
+                android:id="@+id/tvAudienceScoreBanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tvCriticsScore"
+                android:layout_below="@id/tvCriticsScore"
+                android:layout_marginTop="5dp"
+                android:text="Audience Score :"
+                android:textStyle="bold"
+                android:textSize="17sp" />
+
+
+            <TextView
+                android:id="@+id/tvAudienceScore"
+                android:layout_width="wrap_content"
+                android:drawableLeft="@android:drawable/btn_star_big_on"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_alignLeft="@+id/tvTitle"
+                android:layout_below="@+id/tvAudienceScoreBanner"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tvReleaseDateBanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvAudienceScoreBanner"
+                android:layout_below="@+id/tvAudienceScore"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="Release Date:"
+                android:textSize="17sp" />
+            <TextView
+                android:id="@+id/tvReleaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvReleaseDateBanner"
+                android:layout_alignLeft="@+id/tvReleaseDateBanner"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
-                android:background="#c0c0c0"/>
+                android:background="#c0c0c0"
+                android:id="@+id/view" />
             <TextView
                 android:id="@+id/tvCastBanner"
                 android:text="Cast"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvReleaseDate"
+                android:layout_marginTop="5dp"
+               android:layout_alignLeft="@+id/tvReleaseDateBanner" />
             <TextView
                 android:id="@+id/tvCast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="Christian Bale, Joseph-Gordon Levitt"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+               android:layout_below="@+id/tvCastBanner"
+                android:layout_alignLeft="@+id/tvCastBanner"/>
+
             <TextView
                 android:id="@+id/tvSynopsisBanner"
-                android:text="Synopsis"
+                android:text="Overview"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvReleaseDateBanner"
+                android:layout_alignStart="@+id/tvReleaseDateBanner"
+                android:layout_below="@+id/tvCast"/>
 
             <TextView
                 android:id="@+id/tvSynopsis"
                 android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-               />
 
-        </LinearLayout>
+                android:layout_alignLeft="@+id/tvReleaseDateBanner"
+                android:layout_alignStart="@+id/tvReleaseDateBanner"
+                android:layout_below="@id/tvSynopsisBanner"
+
+                />
+
+
+        </RelativeLayout>
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>
