@@ -98,10 +98,7 @@
             android:autoLink="web"
             android:clickable="true"
             android:onClick="signup"
-            android:textColor="#ffffffff" />
-<<<<<<< .mine            android:textColor="#747474" />
-=======            android:clickable="true"
-            android:onClick="signup"
-            android:textColor="#ffffffff" />
->>>>>>> .theirs    </LinearLayout>
+            android:textColor="#ffffffff"
+            />
+  </LinearLayout>
 </LinearLayout>
