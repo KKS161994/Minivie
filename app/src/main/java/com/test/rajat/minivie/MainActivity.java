@@ -1,12 +1,12 @@
 package com.test.rajat.minivie;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener{
+public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener{
 
     private ListView list_movies;
     private MyAdapter adapter;
@@ -33,13 +33,15 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     TextView tv_title,tv_releaseYear;
     private final static CharSequence hint="Search OMDB";
     Typeface face;
-    JSONParser parser;
-    ArrayList<HashMap<String,String>> movies_list;
+    private JSONParser parser;
+    private ArrayList<HashMap<String,String>> movies_list;
     private static String url="https://api.themoviedb.org/3/search/movie?api_key=ee0ee24620c88da78edb61892d8bf78b&&query=";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
+        mDrawerList.setItemChecked(position, true);
+        setTitle(listArray[position]);
         face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         list_movies = (ListView) findViewById(R.id.list_movies);
         tv_title = (TextView) findViewById(R.id.tv_title);
@@ -48,7 +50,6 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         handleIntent(getIntent());
         parser = new JSONParser();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,8 +70,6 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                TextView textView=(TextView)findViewById(R.id.tvb_title);
-//                textView.setText(query);
                 String newquery=url+query.replaceAll(" ","%20");
                 new RetrieveJSON().execute(newquery);
                 searchView.clearFocus();
@@ -111,26 +110,31 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         details=new DetailsActivity();
-
         HashMap<String,String> movie_details=movies_list.get(position);
         Intent i=new Intent(this,DetailsActivity.class);
         i.putExtra("movie_details", movie_details);
         startActivity(i);
-
-
     }
 
-    class RetrieveJSON extends AsyncTask<String,String,String>
+    private class RetrieveJSON extends AsyncTask<String,String,String>
     {
+        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+
+        String[] resultingArray;
+
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             movies_list=new ArrayList<HashMap<String,String>>();
+            this.dialog.setMessage("Searching...");
+            this.dialog.show();
+
+
         }
 
         @Override
         protected String doInBackground(String... params) {
-
             String str_json= parser.getJSONFromUrl(params[0]);
             Log.d("URL",params[0]);
             try {
@@ -139,6 +143,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 Log.d("LEN",Integer.toString(jsonArray.length()));
                 for(int i=0;i<jsonArray.length();i++)
                 {
+                    int[] genre=new int[3];
                     JSONObject tmp=jsonArray.getJSONObject(i);
                     String title=tmp.getString("title");
                     String release_date=tmp.getString("release_date");
@@ -147,6 +152,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                     String poster_path=tmp.getString("poster_path");
                     String backdrop_path=tmp.getString("backdrop_path");
                     String vote_average=tmp.getString("vote_average");
+                    String id=tmp.getString("id");
+                    JSONArray genre_ids=tmp.optJSONArray("genre_ids");
+                    resultingArray = genre_ids.join(",").split(",");
+
                     HashMap<String,String> movie=new HashMap<>();
                     movie.put("title",title);
                     movie.put("release_date",release_date);
@@ -155,6 +164,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                     movie.put("poster_path",poster_path);
                     movie.put("backdrop_path",backdrop_path);
                     movie.put("vote_average",vote_average);
+                    movie.put("id",id);
                     movies_list.add(movie);
                 }
 
@@ -170,8 +180,11 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            //Toast.makeText(MainActivity.this,resultingArray,Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
             adapter=new MyAdapter(MainActivity.this,R.layout.row,movies_list);
             list_movies.setAdapter(adapter);
+
         }
     }
 }
