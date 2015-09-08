@@ -37,13 +37,14 @@
                 android:background="#0288D1"
                 android:textStyle="bold"
                 android:layout_below="@+id/ivPosterImage"
-
                 android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:textColor="#fff"
                 android:padding="7dp"/>
 
             <TextView
+                android:gravity="center_vertical"
+                android:drawableLeft="@android:drawable/ic_media_play"
                 android:id="@+id/tvCriticsScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,8 +52,26 @@
                 android:layout_below="@+id/tvTitle"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
-                android:text="Critics Score: 93%"
+                android:text="Watch Trailer"
+                android:clickable="true"
+                android:onClick="watchtrailer"
                 android:textSize="17sp" />
+            <TextView
+                android:id="@+id/tvAddToWatchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableLeft="@android:drawable/ic_menu_add"
+                android:gravity="center"
+               android:textColor="#009900"
+                android:layout_alignEnd="@id/tvTitle"
+                android:layout_alignRight="@id/tvTitle"
+                android:layout_alignBaseline="@+id/tvCriticsScore"
+                android:text="Add to Watchlist"
+                android:textSize="17sp"
+                android:onClick="addMovie"
+                android:layout_toRightOf="@+id/tvAudienceScoreBanner"
+                android:layout_below="@+id/tvTitle"/>
             <TextView
                 android:id="@+id/tvAudienceScoreBanner"
                 android:layout_width="wrap_content"

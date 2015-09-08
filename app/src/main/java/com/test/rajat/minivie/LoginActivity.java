@@ -24,7 +24,7 @@ public class LoginActivity extends ActionBarActivity {
         email_sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                startActivity(new Intent(LoginActivity.this,BaseActivity.class));
             }
         });
 //        fbloginbutton=(LoginButton) findViewById(R.id.authButton);

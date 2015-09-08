@@ -32,7 +32,6 @@ public class MyAdapter extends ArrayAdapter<HashMap<String,String>> {
         this.movies_list=movies_list;
         roboto_thin=Typeface.createFromAsset(context.getAssets(),"fonts/Roboto-Thin.ttf");
         roboto_reg=Typeface.createFromAsset(context.getAssets(),"fonts/Roboto-Regular.ttf");
-
         Log.d("LENCA",Integer.toString(movies_list.size()));
 
 
