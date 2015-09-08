@@ -38,27 +38,27 @@ public class DetailsActivity extends BaseActivity {
     private SQLiteDatabase db_watchlist;
     private JSONParser dparser;
     private ShareActionProvider shareActionProvider;
-    private String url_trailer = "http://api.themoviedb.org/3/movie/id/videos?api_key=ee0ee24620c88da78edb61892d8bf78b";
+    private Intent shareIntent;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_movie_details, frameLayout);
-
-        /**
-         * Setting title and itemChecked
-         */
         mDrawerList.setItemChecked(position, true);
         setTitle(listArray[position]);
         Intent intent = getIntent();
         movie_details = (HashMap<String, String>) intent.getSerializableExtra("movie_details");
         dparser = new JSONParser();
+        shareIntent =new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Hey! Check out this movie. \n www.themoviedb.org/movie/" + movie_details.get("id") + movie_details.get("title")
+        );
+
         ivPosterImage = (ImageView) findViewById(R.id.ivPosterImage);
         tv_title_b = (TextView) findViewById(R.id.tvTitle);
         tvReleaseDate = (TextView) findViewById(R.id.tvReleaseDate);
         tvSynopsis = (TextView) findViewById(R.id.tvSynopsis);
         tvVote = (TextView) findViewById(R.id.tvAudienceScore);
         Log.d("TAG", "Created");
-        //Toast.makeText(DetailsActivity.this, "title", Toast.LENGTH_SHORT).show();
         setDetails();
         helper = new WatchlistOpenHelper(this);
         db_watchlist = helper.getWritableDatabase();
@@ -70,6 +70,7 @@ public class DetailsActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menu_details, menu);
         MenuItem share = menu.findItem(R.id.menu_item_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(share);
+        shareActionProvider.setShareIntent(shareIntent);
         return true;
     }
 

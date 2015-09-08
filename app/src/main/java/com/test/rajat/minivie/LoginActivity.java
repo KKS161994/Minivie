@@ -6,8 +6,12 @@ package com.test.rajat.minivie;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.widget.Button;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import db.LoginOpenHelper;
 
 /**
  * Created by Rajat on 8/10/2015.
@@ -15,19 +19,34 @@ import android.view.View;
 public class LoginActivity extends ActionBarActivity {
   //  LoginButton fbloginbutton;
     Button email_sign_in_button;
+    String email,password;
+    private EditText et_email,et_password;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.activity_login);
+        et_email=(EditText) findViewById(R.id.email);
+        et_password=(EditText) findViewById(R.id.password);
         email_sign_in_button=(Button) findViewById(R.id.email_sign_in_button);
+
+
         email_sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,BaseActivity.class));
+                email=et_email.getText().toString();
+                password=et_password.getText().toString();
+                if(new LoginOpenHelper(LoginActivity.this).validateUser(email,password)) {
+                    startActivity(new Intent(LoginActivity.this, BaseActivity.class));
+                    Toast.makeText(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(LoginActivity.this,"Email and password do not match",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 //        fbloginbutton=(LoginButton) findViewById(R.id.authButton);
+
 
 
     }
@@ -39,6 +58,9 @@ public class LoginActivity extends ActionBarActivity {
 
 
 
+    public void signup(View v){
+        startActivity(new Intent(this,SignupActivity.class));
+    }
 }
 
 

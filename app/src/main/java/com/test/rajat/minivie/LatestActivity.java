@@ -1,5 +1,6 @@
 package com.test.rajat.minivie;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -62,17 +63,15 @@ public class LatestActivity extends BaseActivity implements AdapterView.OnItemCl
     }
     private class RetrieveJSON extends AsyncTask<String,String,String>
     {
-//        private ProgressDialog dialog = new ProgressDialog(LatestActivity.this);
+          private ProgressDialog dialog = new ProgressDialog(LatestActivity.this);
 //        Timer timer=new Timer();
         String id;
-
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-              list_latest=new ArrayList<HashMap<String,String>>();
-//            this.dialog.setMessage("Loading ...");
-//            this.dialog.show();
+            list_latest=new ArrayList<HashMap<String,String>>();
+            this.dialog.setMessage("Loading Latest Movies...");
+            this.dialog.show();
 //            TimerTask task=new TimerTask() {
 //                @Override
 //                public void run() {
