@@ -128,7 +128,7 @@ public class LatestActivity extends BaseActivity implements AdapterView.OnItemCl
             super.onPostExecute(result);
             adapter_latest=new MyAdapter(LatestActivity.this,R.layout.row,list_latest);
             lv_latest.setAdapter(adapter_latest);
-            Toast.makeText(LatestActivity.this,id,Toast.LENGTH_SHORT).show();
+     //       Toast.makeText(LatestActivity.this,id,Toast.LENGTH_SHORT).show();
         }
     }
 }

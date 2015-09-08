@@ -1,6 +1,7 @@
 package com.test.rajat.minivie;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -56,8 +57,8 @@ public class BaseActivity extends ActionBarActivity {
      * Drawer listner class for drawer open, close etc.
      */
     private ActionBarDrawerToggle actionBarDrawerToggle;
-
-
+private TypedArray iconsArray;
+private ListAdapter listAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +67,13 @@ public class BaseActivity extends ActionBarActivity {
         frameLayout = (FrameLayout)findViewById(R.id.content_frame);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+iconsArray=getResources().obtainTypedArray(R.array.drawericons);
 
         // set a custom shadow that overlays the main content when the drawer opens
         //mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
+listAdapter=new ListAdapter(this,iconsArray);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, listArray));
+        mDrawerList.setAdapter(listAdapter);
         mDrawerList.setOnItemClickListener(new OnItemClickListener() {
 
             @Override

@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity"
-    android:background="#ffBE80FF"
+    android:background="#e4e4e4"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
@@ -23,8 +23,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="O M D B"
             android:id="@+id/textView2"
-            android:textSize="30dp"
-            android:textColor="#ffffffff" />
+            android:textSize="30dp"    android:textColor="#747474"  />
 
 
     </LinearLayout>
@@ -67,7 +66,7 @@
                         android:layout_marginTop="16dp" android:text="Sign in"
                         android:textStyle="bold"
                         android:textColor="#ffffffff"
-                        android:background="#ff7e51c2" />
+                        android:background="#009688" />
 
 
                 </LinearLayout>
@@ -97,6 +96,6 @@
             android:text="Sign Up"
             android:id="@+id/signUpTextView"
             android:autoLink="web"
-            android:textColor="#ffffffff" />
+            android:textColor="#747474" />
     </LinearLayout>
 </LinearLayout>
