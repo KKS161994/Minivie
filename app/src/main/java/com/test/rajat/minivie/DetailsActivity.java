@@ -39,7 +39,6 @@ public class DetailsActivity extends BaseActivity {
     private JSONParser dparser;
     private ShareActionProvider shareActionProvider;
     private String url_trailer = "http://api.themoviedb.org/3/movie/id/videos?api_key=ee0ee24620c88da78edb61892d8bf78b";
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +74,12 @@ public class DetailsActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+/*
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_share:
@@ -87,6 +92,7 @@ public class DetailsActivity extends BaseActivity {
         }
         return true;
     }
+*/
 
     private void setDetails() {
         tvSynopsis.setText(movie_details.get("overview"));
@@ -94,7 +100,6 @@ public class DetailsActivity extends BaseActivity {
         tvVote.setText(movie_details.get("vote_average"));
         tvReleaseDate.setText(movie_details.get("release_date"));
         Picasso.with(this).load("http://image.tmdb.org/t/p/w500" + movie_details.get("poster_path")).into(ivPosterImage);
-
     }
 
     public void watchtrailer(View v) {

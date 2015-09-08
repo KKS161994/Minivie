@@ -32,6 +32,12 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+    finish();
+    }
+
+
 
 }
 

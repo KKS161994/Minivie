@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +19,11 @@ import android.widget.ListView;
 /**
  * Created by Rajat on 9/6/2015.
  */
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends AppCompatActivity {
     /**
-     *  Frame layout: Which is going to be used as parent layout for child activity layout.
-     *  This layout is protected so that child activity can access this
-     *  */
+     * Frame layout: Which is going to be used as parent layout for child activity layout.
+     * This layout is protected so that child activity can access this
+     */
     protected FrameLayout frameLayout;
 
     /**
@@ -34,44 +35,45 @@ public class BaseActivity extends ActionBarActivity {
 
     /**
      * List item array for navigation drawer items.
-     * */
-    protected String[] listArray = { "Home", "Latest", "WatchList"};
+     */
+    protected String[] listArray = {"Home", "Latest", "WatchList", "AboutUs", "LogOut"};
 
     /**
      * Static variable for selected item position. Which can be used in child activity to know which item is selected from the list.
-     * */
+     */
     protected static int position;
 
     /**
-     *  This flag is used just to check that launcher activity is called first time
-     *  so that we can open appropriate Activity on launch and make list item position selected accordingly.
-     * */
+     * This flag is used just to check that launcher activity is called first time
+     * so that we can open appropriate Activity on launch and make list item position selected accordingly.
+     */
     private static boolean isLaunch = true;
 
     /**
-     *  Base layout node of this Activity.
-     * */
+     * Base layout node of this Activity.
+     */
     private DrawerLayout mDrawerLayout;
 
     /**
      * Drawer listner class for drawer open, close etc.
      */
     private ActionBarDrawerToggle actionBarDrawerToggle;
-private TypedArray iconsArray;
-private ListAdapter listAdapter;
+    private TypedArray iconsArray;
+    private ListAdapter listAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        frameLayout = (FrameLayout)findViewById(R.id.content_frame);
+        frameLayout = (FrameLayout) findViewById(R.id.content_frame);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-iconsArray=getResources().obtainTypedArray(R.array.drawericons);
+        iconsArray = getResources().obtainTypedArray(R.array.drawericons);
 
         // set a custom shadow that overlays the main content when the drawer opens
         //mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-listAdapter=new ListAdapter(this,iconsArray);
+        listAdapter = new ListAdapter(this, iconsArray);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(listAdapter);
         mDrawerList.setOnItemClickListener(new OnItemClickListener() {
@@ -80,7 +82,7 @@ listAdapter=new ListAdapter(this,iconsArray);
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-               openActivity(position);
+                openActivity(position);
             }
         });
 
@@ -94,8 +96,7 @@ listAdapter=new ListAdapter(this,iconsArray);
                 mDrawerLayout, 				/* DrawerLayout object */
                 R.drawable.ic_drawer,     /* nav drawer image to replace 'Up' caret */
                 R.string.open_drawer,       /* "open drawer" description for accessibility */
-                R.string.close_drawer)      /* "close drawer" description for accessibility */
-        {
+                R.string.close_drawer)      /* "close drawer" description for accessibility */ {
             @Override
             public void onDrawerClosed(View drawerView) {
                 getSupportActionBar().setTitle(listArray[position]);
@@ -127,7 +128,7 @@ listAdapter=new ListAdapter(this,iconsArray);
          * As we are calling BaseActivity from manifest file and this base activity is intended just to add navigation drawer in our app.
          * We have to open some activity with layout on launch. So we are checking if this BaseActivity is called first time then we are opening our first activity.
          * */
-        if(isLaunch){
+        if (isLaunch) {
             /**
              *Setting this flag false so that next time it will not open our first activity.
              *We have to use this flag because we are using this BaseActivity as parent activity to our other activity.
@@ -139,9 +140,7 @@ listAdapter=new ListAdapter(this,iconsArray);
     }
 
     /**
-     * @param position
-     *
-     * Launching activity when any list item is clicked.
+     * @param position Launching activity when any list item is clicked.
      */
     protected void openActivity(int position) {
 
@@ -166,18 +165,17 @@ listAdapter=new ListAdapter(this,iconsArray);
             case 2:
                 startActivity(new Intent(this, WatchlistActivity.class));
                 break;
-//            case 3:
-//                startActivity(new Intent(this, Item4Activity.class));
-//                break;
-//            case 4:
-//                startActivity(new Intent(this, Item5Activity.class));
-//                break;
+            case 3:
+                break;
+            case 4:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
 
             default:
                 break;
         }
 
-       // Toast.makeText(this, "Selected Item Position::"+position, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, "Selected Item Position::"+position, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -199,7 +197,14 @@ listAdapter=new ListAdapter(this,iconsArray);
         switch (item.getItemId()) {
             case R.id.action_settings:
                 return true;
-
+        /*    case R.id.menu_item_share:
+                String message = "Hey check out this cool app";
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_TEXT, message);
+                startActivity(Intent.createChooser(share, "Share"));
+                return true;
+        */
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -217,9 +222,9 @@ listAdapter=new ListAdapter(this,iconsArray);
     /* We can override onBackPressed method to toggle navigation drawer*/
     @Override
     public void onBackPressed() {
-        if(mDrawerLayout.isDrawerOpen(mDrawerList)){
+        if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
             mDrawerLayout.closeDrawer(mDrawerList);
-        }else {
+        } else {
             mDrawerLayout.openDrawer(mDrawerList);
         }
     }

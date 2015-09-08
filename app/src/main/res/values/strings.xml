@@ -9,5 +9,7 @@
         <item>@drawable/dynnamitt_home</item>
         <item>@drawable/eyeicon</item>
         <item>@drawable/list</item>
+        <item>@drawable/aboutus</item>
+        <item>@drawable/logouticon</item>
     </array>
 </resources>

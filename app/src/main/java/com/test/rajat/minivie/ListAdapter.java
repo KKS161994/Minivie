@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class ListAdapter extends BaseAdapter {
     private Context context;
     private TypedArray mDrawerIcons;
-    protected String[] listArray = {"Home", "Latest", "WatchList"};
+    protected String[] listArray = {"Home", "Latest", "WatchList","AboutUs","LogOut"};
 
     public ListAdapter(Context context,TypedArray mDrawerIcons) {
 this.context=context;

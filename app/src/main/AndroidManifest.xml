@@ -4,7 +4,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-sdk android:minSdkVersion="7"/>
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/appicon"
@@ -37,6 +36,8 @@
             android:label="OMDB"></activity>
         <activity  android:configChanges="keyboardHidden|orientation|screenSize"
             android:name="com.test.rajat.minivie.WatchlistActivity"></activity>
+        <activity  android:configChanges="keyboardHidden|orientation|screenSize"
+            android:name="com.test.rajat.minivie.AboutUs"></activity>
 
         <activity  android:configChanges="keyboardHidden|orientation|screenSize"
             android:name="com.test.rajat.minivie.LatestActivity"
