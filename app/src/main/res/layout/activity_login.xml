@@ -97,6 +97,8 @@
             android:text="Sign Up"
             android:id="@+id/signUpTextView"
             android:autoLink="web"
+            android:clickable="true"
+            android:onClick="signup"
             android:textColor="#ffffffff" />
     </LinearLayout>
 </LinearLayout>
